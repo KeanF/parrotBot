@@ -8,7 +8,7 @@ Required Programs
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - Windows: [Anaconda](https://www.continuum.io/downloads) for Python 2.7
     + With Anaconda, run
-        ```python
+        ```
         conda install conda pip six nose numpy scipy
         conda install mingw libpython
         ```
