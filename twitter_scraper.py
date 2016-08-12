@@ -17,7 +17,7 @@ class TwitterScraper:
   api = tweepy.API(auth)
 
   # Twitter Bot screen_name
-  screen_name = ''
+  screen_name = 'Parrot_Bots'
 
   # Cache most recent twitter feed
   mostRecentFeed = {
@@ -28,6 +28,7 @@ class TwitterScraper:
   def __init__(self):
     pass
 
+
   # Helper for caching tweets
   def __add_tweets(self, screen_name, tweets):
     # Empty cache
@@ -37,9 +38,11 @@ class TwitterScraper:
     for tweet in tweets:
       self.mostRecentFeed['tweets'].append(tweet)
 
+
   # Get cached screen_name
   def get_cached_screen_name(self):
     return self.mostRecentFeed['screen_name']
+
 
   # Get current cached tweets (reverse chronological)
   def get_cached_tweets(self):
@@ -50,16 +53,22 @@ class TwitterScraper:
     # Chronological order (if it really matters)
     # return tweets[::-1]
 
+
   # Get twitter feed associated with API key (up to 20 most recent)
-  def get_home_feed(self):
+  def get_home_feed(self, gen_csv=0):
     public_tweets = self.api.home_timeline()
     self.__add_tweets(self.screen_name, public_tweets)
+
+    if gen_csv:
+      self.gen_usr_csv()
+
     return self.get_cached_tweets()
     # Raw tweet data (array of Status objects)
     # return self.mostRecentFeed['tweets']
 
+
   # Get tweets from a given @user (up to 3240 from most recent tweet)
-  def get_usr_feed(self, screen_name):
+  def get_usr_feed(self, screen_name, gen_csv=0):
     # Hold tweets to be cached
     tweets = []
 
@@ -83,7 +92,12 @@ class TwitterScraper:
     # Update cache
     self.__add_tweets(screen_name, tweets)
 
-    return tweets
+    # Generate CSV (if wanted)
+    if gen_csv:
+      print 'Generating CSV'
+      self.gen_usr_csv(screen_name)
+
+    return self.get_cached_tweets()
 
   # Return CSV of screen_name (if exists)
   def get_csv(self, screen_name):
@@ -97,7 +111,10 @@ class TwitterScraper:
   # Generate CSV of tweets from screen_name, return CSV name
   # Updates cache!
   def gen_usr_csv(self, screen_name):
-    self.get_usr_feed(screen_name)
+    if screen_name == self.mostRecentFeed['screen_name']:
+      pass
+    else:
+      self.get_usr_feed(screen_name)
 
     # Hold tweets for adding to CSV
     tweets = self.mostRecentFeed['tweets']

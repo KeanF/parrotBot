@@ -1,6 +1,6 @@
 # parrotBot
 
-Simple Twitter feed parrot trained with unweighted Markov Chains (contributed by [@cameronblandford](https://github.com/cameronblandford))
+[Twitter parrot](https://twitter.com/Parrot_Bots) trained with unweighted Markov Chains (contributed by [@cameronblandford](https://github.com/cameronblandford))
 
 ## Usage
 
