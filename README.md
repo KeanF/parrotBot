@@ -8,10 +8,10 @@ Required Programs
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - Windows: [Anaconda](https://www.continuum.io/downloads) for Python 2.7
     + With Anaconda, run
-        ```
-        conda install conda pip six nose numpy scipy
-        conda install mingw libpython
-        ```
+```
+conda install conda pip six nose numpy scipy
+conda install mingw libpython
+```
 - Python 2.7
     + [Theano](https://github.com/Theano/Theano)
     + [Keras](https://github.com/fchollet/keras)
